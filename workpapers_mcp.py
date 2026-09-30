@@ -6,18 +6,19 @@ test procedures, findings, management letter) as tools any MCP-capable
 model can call: read a workpaper, list findings, trace a control from
 risk to test result, and see what is still open.
 
-Run (stdio):  python server.py
+Run (stdio):  workpapers-mcp
 Wire into Claude Code:
-  claude mcp add workpapers -- /path/to/.venv/bin/python /path/to/server.py
+  claude mcp add workpapers -- workpapers-mcp
 """
 
+import os
 import re
 from pathlib import Path
 
 from mcp.server.mcpserver import MCPServer
 from mcp.types import ToolAnnotations
 
-DATA_DIR = Path.home() / "aiProjects/aminWork/automation-portfolio/itgc-audit-workpapers"
+DATA_DIR = Path(os.environ.get("WORKPAPERS_DATA_DIR", Path.home() / "aiProjects/aminWork/automation-portfolio/itgc-audit-workpapers"))
 
 # Drafting notes to self sit in square brackets and never leave this server.
 REVIEW_NOTE = re.compile(r"\[REVIEW NOTE[^\]]*\]", re.I)
@@ -144,5 +145,9 @@ def open_items() -> str:
     return f"{len(items)} open item(s):\n" + "\n".join(f"- {x}" for x in _capped(items))
 
 
-if __name__ == "__main__":
+def main():
     server.run()
+
+
+if __name__ == "__main__":
+    main()

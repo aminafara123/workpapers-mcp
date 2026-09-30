@@ -16,6 +16,12 @@ Audit workpapers are cross-referenced by design. A risk points to a control, the
 ## Setup
 
 ```bash
+pipx install workpapers-mcp
+```
+
+`uvx workpapers-mcp` works too if you prefer no install. Hacking on a clone instead:
+
+```bash
 python3 -m venv .venv
 .venv/bin/pip install mcp
 ```
@@ -23,10 +29,16 @@ python3 -m venv .venv
 Wire it into Claude Code:
 
 ```bash
-claude mcp add workpapers -- /path/to/workpapers-mcp/.venv/bin/python /path/to/workpapers-mcp/server.py
+claude mcp add workpapers -- workpapers-mcp
 ```
 
-The server reads the pack from `~/aiProjects/aminWork/automation-portfolio/itgc-audit-workpapers`. Change `DATA_DIR` at the top of `server.py` to point it somewhere else.
+Running from a clone, point it at the venv instead:
+
+```bash
+claude mcp add workpapers -- /path/to/workpapers-mcp/.venv/bin/python /path/to/workpapers-mcp/workpapers_mcp.py
+```
+
+The server reads the pack from `~/aiProjects/aminWork/automation-portfolio/itgc-audit-workpapers`. Point `WORKPAPERS_DATA_DIR` at your own data folder to read it from somewhere else.
 
 ## Demo
 

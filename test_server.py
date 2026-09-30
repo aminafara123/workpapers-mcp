@@ -3,7 +3,7 @@
 import tempfile
 from pathlib import Path
 
-import server
+import workpapers_mcp as server
 
 WP = {
     "01-plan.md": "# Workpaper 1: Plan\n\nScope is a demo account.\n",
