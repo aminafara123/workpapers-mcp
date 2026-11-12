@@ -1,5 +1,7 @@
 # workpapers-mcp
 
+<!-- mcp-name: io.github.aminafara123/workpapers-mcp -->
+
 An MCP server over my itgc-audit-workpapers pack: an IT General Controls audit of my own AWS environment, written up as five markdown workpapers. This server exposes that pack as tools any MCP-capable AI client can call.
 
 Audit workpapers are cross-referenced by design. A risk points to a control, the control points to a test, the test points to a finding. Following those links by hand means flipping between files. With this server a model can trace a control from risk to result in one call, or answer "whats still open?" straight from the files.
